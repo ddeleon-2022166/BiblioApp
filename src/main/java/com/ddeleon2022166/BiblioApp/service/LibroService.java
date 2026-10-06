@@ -18,7 +18,11 @@ public class LibroService {
     private final LibroRepository libroRepository;
 
     public Page<LibroResponse> listarLibros(String titulo, String categoria, Pageable pageable) {
-        return libroRepository.buscarConFiltros(titulo, categoria, pageable)
+        // Si el controlador pasa null, lo convertimos a cadena vacía para evitar errores en PostgreSQL
+        String filtroTitulo = (titulo == null) ? "" : titulo;
+        String filtroCategoria = (categoria == null) ? "" : categoria;
+
+        return libroRepository.buscarConFiltros(filtroTitulo, filtroCategoria, pageable)
                 .map(this::mapToResponse);
     }
 
