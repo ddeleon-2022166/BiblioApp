@@ -53,7 +53,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 }
             }
         } catch (Exception e) {
-            // Si el token es inválido, mal formado o ha expirado, limpiamos el contexto
+            // Imprimimos el error real en la consola de IntelliJ para saber qué falla
+            System.err.println("❌ ERROR EN JWT FILTER: " + e.getClass().getSimpleName() + " - " + e.getMessage());
+            e.printStackTrace(); // Opcional, para ver la traza completa
+
             SecurityContextHolder.clearContext();
         }
         filterChain.doFilter(request, response);

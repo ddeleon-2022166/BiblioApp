@@ -13,8 +13,8 @@ public interface LibroRepository extends JpaRepository<Libro, Long> {
     Optional<Libro> findByIdAndActivoTrue(Long id);
 
     @Query("SELECT l FROM Libro l WHERE l.activo = true AND " +
-            "(:titulo IS NULL OR LOWER(l.titulo) LIKE LOWER(CONCAT('%', :titulo, '%'))) AND " +
-            "(:categoria IS NULL OR LOWER(l.categoria) LIKE LOWER(CONCAT('%', :categoria, '%')))")
+            "LOWER(l.titulo) LIKE LOWER(CONCAT('%', :titulo, '%')) AND " +
+            "LOWER(l.categoria) LIKE LOWER(CONCAT('%', :categoria, '%'))")
     Page<Libro> buscarConFiltros(@Param("titulo") String titulo, @Param("categoria") String categoria, Pageable pageable);
 
     boolean existsByIsbnAndActivoTrue(String isbn);
