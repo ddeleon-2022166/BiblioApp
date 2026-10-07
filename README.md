@@ -12,7 +12,7 @@ BiblioApp es una API REST backend desarrollada con Spring Boot destinada a moder
 
 ## Tecnologías Utilizadas
 * **Java 21**
-* **Spring Boot 3.3.4**
+* **Spring Boot 4.1.1**
 * **Maven** (Gestor de dependencias)
 * **MySQL** (Sistema gestor de base de datos)
 * **Spring Security & JWT (jjwt)**
@@ -27,11 +27,12 @@ BiblioApp es una API REST backend desarrollada con Spring Boot destinada a moder
 
 ## Configuración de MySQL y Variables de Entorno
 En el archivo `src/main/resources/application.properties` se utilizan variables de entorno para evitar incrustar secretos. Configure las siguientes variables de entorno en su sistema o directamente en la Run Configuration de IntelliJ IDEA:
-* `DB_USER` (Usuario de MySQL, por defecto: `root`)
-* `DB_PASSWORD` (Contraseña de MySQL, por defecto: `root`)
+* `spring.datasource.username` (Usuario de Postgresql, por defecto: `postgres`)
+* `DB_PASSWORD` (Contraseña de MySQL, por defecto: `admin`)
 * `JWT_SECRET` (Clave HMAC-SHA de al menos 256 bits)
 
-La base de datos `db_biblio_app` será creada automáticamente.
+La base de datos `db_biblio_app` debera crearse desde PostgreSQL, siguiendo el flujo sucesivo: "Databases" -> "Object" -> "Create" -> "Database"
+Unicamente debera ingresar el nombre de la BD y crearla. Si los datos fueron correctamente configurados, se conectara a ella automáticamente.
 
 ## Instalación y Ejecución
 
